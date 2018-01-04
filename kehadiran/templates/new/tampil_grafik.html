@@ -1,0 +1,57 @@
+{% extends "layout/base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Grafik Kehadiran</h1>
+      <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="/dafter_hadir">Daftar Hadir</a></li>
+        <li class="active">Grafik {{ bulan }}/{{ tahun }}</li>
+      </ol>
+      <br>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="row">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Grafik kehadiran Anda dibulan {{ bulan }} tahun {{ tahun }}
+            </div>
+            <!-- /.panel-heading -->
+          </div>
+          <div class="panel-body">
+            <div class="morris-bar-chart"></div>
+            <div class="chart_data" style="display:none;">
+              {{ chart_data }}
+            </div>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+        <!-- panel -->
+      </div>
+    </div>
+    <!-- row -->
+  </div>
+  <!-- row -->
+{% endblock %}
+{% block inline_js %}
+<script type="text/javascript">
+  $(function() {
+    var chart_data = JSON.parse($('#chart_data').html()):
+
+    morris.Bar({
+      element: 'morris-bar-chart',
+      data: chart_data.data,
+      xkeys: 'x',
+      ykeys: ['a'],
+      labels: ['jumlah'],
+      hideHover: 'auto',
+      resize: true
+    });
+  });
+</script>
+{% endblock %}

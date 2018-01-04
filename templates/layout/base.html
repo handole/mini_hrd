@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block head_title %} {% endblock head_title %}</title>
+
+    {% include "layout/head.html" %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- navigations -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        {% include "layout/nav.html" %}
+
+        {% include "layout/sidebar.html" %}
+      </nav>
+      <div id="page-wrapper">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <!-- page wrapper -->
+    </div>
+    <!-- wrapper -->
+
+    {% include "layout/js.html" %}
+
+    {% block inline_js %}
+    {% endblock %}
+  </body>
+</html>
